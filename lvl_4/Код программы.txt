@@ -1,0 +1,21 @@
+
+import sqlite3
+
+conn = sqlite3.connect('teacher.db')
+student_id = int(input("Введите ID студента: "))
+
+
+cursor = conn.cursor()
+cursor.execute(f'SELECT * FROM Students WHERE Student_Id={student_id}')
+result = cursor.fetchone()
+if result:
+# Если студент найден, выводим информацию о нем и его школе
+ print(f'ID Студента: {result[0]}')
+ print(f'Имя студента: {result[1]}')
+ print(f'ID школы: {result[2]}')
+else:
+# Если студент не найден, сообщаем об этом пользователю
+ print('Студент не найден')
+
+
+conn.close()
